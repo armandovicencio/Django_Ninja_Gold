@@ -1,0 +1,102 @@
+
+{% extends "app/base.html" %}
+{% block titulo %}NINJA GOLD{% endblock %}
+{% block estilo %}
+
+<style>
+    h1{
+        text-align: center;
+        font-size: 50px;
+        margin-top: 100px;
+    }
+
+    .box {
+    height: 350px;
+    }
+</style>
+{% endblock  %}
+{% block contenido %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid justify-content-end">
+        <div class="d-flex">
+            {% if estado is False %}
+            <a href='/' class="btn btn-outline-danger">Get out</a>
+            {%endif%}
+        </div>
+    </div>
+</nav>
+<div class="container mt-1">
+    <h1>Ninja Gold</h1>
+    <hr>
+</div>
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4">
+        <div class='m-2'>
+                <h4 class="d-block">Get {{metaoro}} gold in less than {{metamovimientos}} moves</h4>
+                <h4 class="d-inline-block">Your Gold:</h4>
+                <h4 class="d-inline-block border w-25">{{goldstatus}}</h4>
+                <h4 class="d-block">You Have {{movimientostotal}} moves left</h4>
+                
+            </div>
+    </div>
+</div>
+    <div class="forms w-100 d-flex justify-content-center">
+        {% if estado is False %}
+        <div class="justify-content-center align-items-center w-25 m-2 border-info bg-info text-center">
+            <h4>Farm</h4>
+            <form action='/procesar' method='post' class=" text-center mb-2 mt-1">
+                {% csrf_token %}
+                <input type="hidden" name="building" value="farm" />
+                <input class="btn btn-secondary mt-2" type="submit" value="Find Gold! with form">
+                <a href="/procesar/farm"  class="btn btn-success mt-2">Find Gold! </a>
+            </form>
+        </div>
+        <div class="justify-content-center align-items-center w-25 m-2 border-info bg-info text-center">
+            <h4>Cave</h4>
+            <form action='/procesar' method='post' class=" text-center mb-2 mt-1">
+                {% csrf_token %}
+                <input type="hidden" name="building" value="cave" />
+                <input class="btn btn-secondary mt-2" type="submit" value="Find Gold! with form">
+                <a href="/procesar/cave"  class="btn btn-success mt-2">Find Gold! with url</a>
+            </form>
+        </div>
+        <div class="justify-content-center align-items-center w-25 m-2 border-info bg-info text-center">
+            <h4>House</h4>
+            <form action='/procesar' method='post' class=" text-center mb-2 mt-1">
+                {% csrf_token %}
+                <input type="hidden" name="building" value="house" />
+                <input class="btn btn-secondary mt-2" type="submit" value="Find Gold! with form">
+                <a href="/procesar/house"  class="btn btn-success mt-2">Find Gold! with url</a>
+            </form>
+        </div>
+        <div class="justify-content-center align-items-center w-25 m-2 border-info bg-info text-center">
+            <h4>Casino</h4>
+            <form action='/procesar' method='post' class=" text-center mb-2 mt-1">
+                {% csrf_token %}
+                <input type="hidden" name="building" value="casino" />
+                <input class="btn btn-secondary mt-2" type="submit" value="Find Gold! with form">
+                <a href="/procesar/casino"  class="btn btn-success mt-2">Find Gold! with url</a>
+            </form>
+        </div>
+        {%endif%}
+    </div>
+
+    <div class="justify-content-center align-items-center text-center">
+        <h4 class=" d-block text-center">Activities</h4>
+        <div class="d-inline-flex justify-content-center border border-secondary box overflow-auto w-75">
+            <div>
+                {% if estado is False and contador > 0 %} 
+                {%for actividades in actividad %} 
+                {{actividades | safe}}
+                {% endfor %} 
+                {%else%} 
+                {{winlost | safe}} 
+                {%endif%}
+            </div> 
+        </div>
+    </div>
+    <div class='justify-content-center align-items-center text-center'>
+        {% if estado is True%}
+        <a class="d-inline-flex btn btn-secondary justify-content-center mt-2" href="/">Restart</a> {%endif%}
+    </div>
+    {% endblock  %}
