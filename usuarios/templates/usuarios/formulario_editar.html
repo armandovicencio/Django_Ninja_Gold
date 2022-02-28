@@ -1,0 +1,71 @@
+{% extends "app/base.html"%}
+
+{% block titulo %}Editar Usuarios{% endblock %}
+
+{% block contenido %}
+
+<div class="container mt-5">
+    <h1> <i class="fa fa-user-circle" aria-hidden="true"></i> Editar Usuario</h1>
+    <hr>
+
+    <div class="row">
+
+        <div class="col-6">
+
+            <form action="" method="post">
+                {% csrf_token %}
+
+                <div class="row g-4 mt-1 align-items-center">
+                    <div class="col-4">
+                        <label for="nombre" class="col-form-label">Nombre</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" id="nombre" class="form-control" name="nombre" value="{{usuario.nombre}}">
+                    </div>
+                </div>
+                <div class="row g-4 mt-1 align-items-center">
+                    <div class="col-4">
+                        <label for="apellido" class="col-form-label">Apellido</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" id="apellido" class="form-control" name="apellido" value="{{usuario.apellido}}">
+                    </div>
+                </div>
+                <div class="row g-4 mt-1 align-items-center">
+                    <div class="col-4">
+                        <label for="username" class="col-form-label">Usuario</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" id="username" class="form-control" name="username" value="{{usuario.username}}">
+                    </div>
+                </div>
+
+                <div class="row g-4 mt-1 align-items-center">
+                    <div class="col-4">
+                        <label for="email" class="col-form-label">Email</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="email" id="email" class="form-control" name="email" value="{{usuario.email}}">
+                    </div>
+                </div>
+
+
+                <div class="row g-4 mt-1 align-items-center">
+                    <div class="col-4">
+                    </div>
+                    <div class="col-8">
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+
+
+</div>
+
+
+{% endblock %}

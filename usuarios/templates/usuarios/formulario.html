@@ -1,0 +1,99 @@
+{% extends "app/base.html"%}
+
+{% block titulo %}Formulario de Usuarios{% endblock %}
+
+{% block contenido %}
+
+<div class="container mt-5">
+    <h1> <i class="fa fa-user-circle" aria-hidden="true"></i> Formulario de  Usuarios</h1>
+    <hr>
+
+    <div class="row">
+
+        <div class="col-6">
+
+            {% if errores %}
+                <div class="alert alert-danger">
+                    <ol>
+                        {% for item in errores %}
+                            <li> {{item}} </li>
+                        {% endfor %}
+                    </ol>
+                </div>
+            {% endif %}
+
+            <form action="" method="post">
+                {% csrf_token %}
+
+                <div class="row g-4 mt-1 align-items-center">
+                    <div class="col-4">
+                        <label for="nombre" class="col-form-label">Nombre</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" id="nombre" class="form-control" name="nombre" minlength="5" required value="{{request.session.nombre}}">
+                    </div>
+                </div>
+                <div class="row g-4 mt-1 align-items-center">
+                    <div class="col-4">
+                        <label for="apellido" class="col-form-label">Apellido</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" id="apellido" class="form-control" name="apellido">
+                    </div>
+                </div>
+                <div class="row g-4 mt-1 align-items-center">
+                    <div class="col-4">
+                        <label for="username" class="col-form-label">Usuario</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" id="username" class="form-control" name="username">
+                    </div>
+                </div>
+
+                <div class="row g-4 mt-1 align-items-center">
+                    <div class="col-4">
+                        <label for="email" class="col-form-label">Email</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="email" id="email" class="form-control" name="email">
+                    </div>
+                </div>
+
+                <div class="row g-4 mt-1 align-items-center">
+                    <div class="col-4">
+                        <label for="password" class="col-form-label">Contraseña</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="password" id="password" class="form-control" name="password">
+                    </div>
+                </div>
+
+                <div class="row g-4 mt-1 align-items-center">
+                    <div class="col-4">
+                        <label for="confirmar_password" class="col-form-label">Confirmar Contraseña</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="password" id="confirmar_password" class="form-control" name="confirmar_password">
+                    </div>
+                </div>
+
+
+                <div class="row g-4 mt-1 align-items-center">
+                    <div class="col-4">
+                    </div>
+                    <div class="col-8">
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+
+
+</div>
+
+
+{% endblock %}

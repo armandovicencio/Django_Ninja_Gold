@@ -1,0 +1,33 @@
+{% extends "app/base.html"%}
+
+{% block titulo %}Camion{% endblock %}
+
+{% block contenido %}
+
+<div class="container mt-5">
+    <h1>Camion</h1>
+    <hr>
+    <p>Nombre : {{camion.nombre}}</p>
+    <p>Tipo : {{camion.get_tipo_display}} ({{camion.tipo}})</p>
+
+    <h3>Rutas</h3>
+
+    <ul>
+    {% for ruta in camion.rutas.all %}
+        <li>{{ruta}}</li>
+    {% endfor %}
+    </ul>
+
+
+
+    <h3>Choferes</h3>
+
+    <ul>
+    {% for chofer in camion.choferes.all %}
+        <li>{{chofer}}</li>
+    {% endfor %}
+    </ul>
+</div>
+
+
+{% endblock %}

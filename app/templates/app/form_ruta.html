@@ -1,0 +1,67 @@
+{% extends "app/base.html"%}
+
+{% block titulo %}AGREGAR RUTA{% endblock %}
+
+{% block contenido %}
+
+<div class="container mt-5">
+    <div class="row">
+
+        <div class="col-6">
+            <h1>Formulario de Rutas</h1>
+            <hr>
+
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="row g-4 align-items-center">
+                    <div class="col-4">
+                        <label for="nombre" class="col-form-label">Camion</label>
+                    </div>
+                    <div class="col-8">
+                        <select class="form-select" name="camion">
+
+                        <option value="">Seleccionar Camion</option>
+                        {% for camion in camiones %}
+                            <option value={{camion.id}}>{{camion.nombre}} - Rutas:{{camion.rutas.count}} </option>
+                        {% endfor %}
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row g-4 mt-1 align-items-center">
+                    <div class="col-4">
+                        <label for="origen" class="col-form-label">Origen</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" id="origen" class="form-control" name="origen">
+                    </div>
+                </div>
+                <div class="row g-4 mt-1 align-items-center">
+                    <div class="col-4">
+                        <label for="destino" class="col-form-label">Destino</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" id="destino" class="form-control" name="destino">
+                    </div>
+                </div>
+
+
+                <div class="row g-4 mt-1 align-items-center">
+                    <div class="col-4">
+                    </div>
+                    <div class="col-8">
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+{% endblock %}

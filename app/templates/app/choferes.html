@@ -1,0 +1,51 @@
+{% extends "app/base.html"%}
+
+{% block titulo %}Choferes{% endblock %}
+
+{% block contenido %}
+
+
+<div class="container mt-5">
+
+    <div class="row">
+        <div class="col-6">
+
+            {% for chofer in choferes %}
+
+            <p>Nombre : {{chofer.nombre}}</p>
+            <a href="{% url 'chofer' id=chofer.id %}"> Mas Detalles </a>
+            
+            <hr>
+            {% endfor %}
+        </div>
+
+        <div class="col-6">
+            <h1>Formulario de Chofer</h1>
+            <hr>
+
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="row g-4 align-items-center">
+                    <div class="col-4">
+                        <label for="nombre" class="col-form-label">Nombre</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" id="nombre" class="form-control" name="nombre">
+                    </div>
+                </div>
+
+                <div class="row g-4 mt-1 align-items-center">
+                    <div class="col-4">
+                    </div>
+                    <div class="col-8">
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

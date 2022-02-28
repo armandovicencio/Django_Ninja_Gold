@@ -1,0 +1,64 @@
+{% extends "app/base.html"%}
+
+{% block titulo %}Chofer{% endblock %}
+
+{% block contenido %}
+
+<div class="container mt-5">
+
+    <div class="row">
+        <div class="col-6">
+            <h1>Chofer</h1>
+            <hr>
+            <p>Nombre : {{chofer.nombre}}</p>
+
+            <ul>
+
+                {% for camion in chofer.camiones.all %}
+                <li>{{camion.nombre}}  - <a href="/chofer/remove/{{chofer.id}}/{{camion.id}}">Eliminar</a></li>
+                {% endfor%}
+
+            </ul>
+
+        </div>
+  
+
+        <div class="col-6">
+      
+            <form action="/chofer/{{chofer.id}}/add/camion/" method="post">
+                {% csrf_token %}
+                <div class="row g-4 align-items-center">
+                    <div class="col-4">
+                        <label for="nombre" class="col-form-label">Camion</label>
+                    </div>
+                    <div class="col-8">
+                        <select class="form-select" name="camion">
+
+                        <option value="">Seleccionar Camion</option>
+                        {% for camion in camiones %}
+                            <option value={{camion.id}}>{{camion.nombre}} - Rutas:{{camion.rutas.count}} </option>
+                        {% endfor %}
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row g-4 mt-1 align-items-center">
+                    <div class="col-4">
+                    </div>
+                    <div class="col-8">
+                        <button type="submit" class="btn btn-primary">AGREGAR CAMION</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+
+
+</div>
+
+
+{% endblock %}

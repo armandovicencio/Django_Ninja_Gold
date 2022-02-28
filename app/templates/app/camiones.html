@@ -1,0 +1,72 @@
+{% extends "app/base.html"%} {% block titulo %}Camiones{% endblock %} {% block contenido %}
+
+<div class="container mt-5">
+
+    <div class="row">
+        <div class="col-6">
+
+            {% for camion in camiones %}
+
+            <p>Camion : {{camion.nombre}}</p>
+            <p>Tipo : {{camion.get_tipo_display}} ({{camion.tipo}})</p>
+            <p>Cantidad Rutas: {{camion.rutas.count}} </p>
+            <a href="{% url 'camion' id=camion.id %}"> Mas Detalles </a> {% if camion.rutas.count > 0 %}
+
+            <h6>Rutas</h6>
+            <ul>
+                {% for ruta in camion.rutas.all %}
+                <li>{{ruta}}</li>
+                {% endfor %}
+            </ul>
+
+            {% endif %}
+
+            <hr> {% endfor %}
+        </div>
+
+        <div class="col-6">
+            <h1>Formulario de Camiones</h1>
+            <hr>
+
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="row g-4 align-items-center">
+                    <div class="col-4">
+                        <label for="nombre" class="col-form-label">Nombre</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" id="nombre" class="form-control" name="nombre">
+                    </div>
+                </div>
+                <div class="row g-4 mt-1 align-items-center">
+                    <div class="col-4">
+                        <label for="nombre" class="col-form-label">Tipo</label>
+                    </div>
+                    <div class="col-8">
+                        <select class="form-select" name="tipo">
+
+                        <option value="">Seleccionar Tipo</option>
+                        {% for tipo in tipos %}
+                            <option value={{tipo.0}}>{{tipo.1}}</option>
+                        {% endfor %}
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row g-4 mt-1 align-items-center">
+                    <div class="col-4">
+                    </div>
+                    <div class="col-8">
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}

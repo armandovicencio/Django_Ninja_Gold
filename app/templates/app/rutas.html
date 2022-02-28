@@ -1,0 +1,23 @@
+{% extends "app/base.html"%}
+
+{% block titulo %}Rutas{% endblock %}
+
+{% block contenido %}
+
+<div class="container mt-5">
+    <h1>Rutas</h1>
+
+    {% for ruta in rutas %}
+
+        <hr>
+        <p>ID Ruta : {{ruta.id}}</p>
+        <p>Camion : {{ruta.camion.nombre}}</p>
+        <p>Origen : {{ruta.origen}}</p>
+        <p>Destino :{{ruta.destino}} </p>
+        <p>Creado : {{ruta.created_at}}</p>
+
+    {% endfor %}
+</div>
+
+
+{% endblock %}
